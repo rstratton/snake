@@ -114,6 +114,8 @@ class Snake(object):
     def __init__(self, x, y, grid, length=5):
         self._segments = LinkedList()
         self._grid = grid
+        self._timer = 0
+        self._TIMER_THRESHOLD
         for i in xrange(length):
             self._segments.append(_SnakeSegment(x, y - i, Direction.UP))
         self._register_snake_on_grid()
@@ -141,6 +143,12 @@ class Snake(object):
         self._grid.set_cell(new_segment.x, new_segment.y, CellValue.SNAKE)
         self._grid.set_cell(old_segment.x, old_segment.y, CellValue.EMPTY)
         self._segments.prepend(new_segment)
+
+    def update(self, dt):
+        self._timer += dt
+        if self._timer >= self._TIMER_THRESHOLD:
+            self.move()
+            self._timer = self._timer % self._TIMER_THRESHOLD
 
     def set_direction(self, dir):
         head, prev = self._segments[0], self._segments[1]

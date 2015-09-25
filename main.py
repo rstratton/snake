@@ -24,4 +24,8 @@ def on_key_press(symbol, modifiers):
     elif symbol == pyglet.window.key.D:
         snake.set_direction(Direction.RIGHT)
 
+def update(dt):
+    snake.update(dt)
+
+pyglet.clock.schedule_interval(update, 0.0166666)
 pyglet.app.run()
