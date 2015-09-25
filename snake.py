@@ -4,15 +4,15 @@ class Grid(object):
     def __init__(self, width, height, pixels_per_cell=20):
         self.ppc, self.width, self.height = pixels_per_cell, width, height
         # Initialize 2D array of booleans to 'False'
-        self.cells = [[False] * width for _ in xrange(height)]
+        self._cells = [[False] * width for _ in xrange(height)]
         # Set boundary cells to 'True'
         for i in xrange(width):
-            self.cells[i][0] = self.cells[i][height - 1] = True
+            self._cells[i][0] = self._cells[i][height - 1] = True
         for i in xrange(1, height - 1):
-            self.cells[0][i] = self.cells[width - 1][i] = True
+            self._cells[0][i] = self._cells[width - 1][i] = True
 
     def draw(self):
-        for i, column in enumerate(self.cells):
+        for i, column in enumerate(self._cells):
             for j, cell in enumerate(column):
                 if cell:
                     self._draw_cell(i, j)
