@@ -13,4 +13,9 @@ def on_draw():
     window.clear()
     label.draw()
 
+@window.event
+def on_key_press(symbol, modifiers):
+    if symbol == pyglet.window.key.SPACE:
+        pyglet.app.exit()
+
 pyglet.app.run()
