@@ -1,18 +1,16 @@
 #!/usr/bin/env python2
 
 import pyglet
+from snake import Grid
 
-window = pyglet.window.Window(width=800, height=800)
-label = pyglet.text.Label("Hello, world",
-                          font_name="Times New Roman",
-                          font_size=36,
-                          x=window.width//2, y=window.height//2,
-                          anchor_x="center", anchor_y="center")
+grid   = Grid(40, 40)
+window = pyglet.window.Window(width=grid.ppc*grid.width,
+                              height=grid.ppc*grid.height)
 
 @window.event
 def on_draw():
     window.clear()
-    label.draw()
+    grid.draw()
 
 @window.event
 def on_key_press(symbol, modifiers):
