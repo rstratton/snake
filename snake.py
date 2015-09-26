@@ -92,9 +92,9 @@ class Grid(object):
                     self._draw_cell(i, j, cell)
 
     def _draw_cell(self, i, j, cell):
-        x1, y1 = i * self.ppc, j * self.ppc
-        x2, y2 = i * self.ppc + self.ppc, y1
-        x3, y3 = x2, j * self.ppc + self.ppc
+        x1, y1 = i * self.ppc + 1, j * self.ppc + 1
+        x2, y2 = i * self.ppc + self.ppc - 1, y1
+        x3, y3 = x2, j * self.ppc + self.ppc - 1
         x4, y4 = x1, y3
         if cell is CellValue.WALL:
             pyglet.gl.glColor3f(0, 0, 1)
