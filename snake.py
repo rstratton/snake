@@ -115,7 +115,7 @@ class Snake(object):
         self._segments = LinkedList()
         self._grid = grid
         self._timer = 0
-        self._TIMER_THRESHOLD
+        self._TIMER_THRESHOLD = 0.75
         for i in xrange(length):
             self._segments.append(_SnakeSegment(x, y - i, Direction.UP))
         self._register_snake_on_grid()
