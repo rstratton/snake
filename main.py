@@ -1,6 +1,5 @@
 #!/usr/bin/env python2
 
-import random
 import pyglet
 
 from graphics import Graphics
@@ -13,9 +12,7 @@ from util import Direction
 world  = World.instance
 snake  = Snake(5, 5)
 Walls()
-Food(random.choice(world.get_free_positions()))
-Food(random.choice(world.get_free_positions()))
-Food(random.choice(world.get_free_positions()))
+Food.spawn_random(3)
 
 window = pyglet.window.Window(width  = Graphics.ppc * world.width,
                               height = Graphics.ppc * world.height)

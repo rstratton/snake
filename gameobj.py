@@ -47,7 +47,13 @@ class Food(GameObject, Drawable):
 
     def kill(self):
         GameObject.kill(self)
-        Food(random.choice(World.instance.get_free_positions()))
+        Food.spawn_random()
+
+    @staticmethod
+    def spawn_random(count=1):
+        for _ in xrange(count):
+            Food(random.choice(World.instance.get_free_positions()))
+
 
 
 class _SnakeSegment(GameObject, Drawable):
