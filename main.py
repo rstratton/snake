@@ -1,31 +1,43 @@
 #!/usr/bin/env python2
 
+import random
 import pyglet
-from snake import Grid, Snake, Direction
 
-grid   = Grid(40, 40)
-snake  = Snake(20, 20, grid)
-window = pyglet.window.Window(width=grid.ppc * grid.width,
-                              height=grid.ppc * grid.height)
+from graphics import Graphics
+from gameobj import Snake
+from gameobj import Food
+from gameobj import Walls
+from gameobj import World
+from util import Direction
+
+world  = World.instance
+snake  = Snake(5, 5)
+Walls()
+Food(random.choice(world.get_free_positions()))
+Food(random.choice(world.get_free_positions()))
+Food(random.choice(world.get_free_positions()))
+
+window = pyglet.window.Window(width  = Graphics.ppc * world.width,
+                              height = Graphics.ppc * world.height)
 
 @window.event
 def on_draw():
     window.clear()
-    grid.draw()
+    world.draw()
 
 @window.event
 def on_key_press(symbol, modifiers):
     if symbol == pyglet.window.key.W:
-        snake.set_direction(Direction.UP)
+        snake.direction = Direction.UP
     elif symbol == pyglet.window.key.A:
-        snake.set_direction(Direction.LEFT)
+        snake.direction = Direction.LEFT
     elif symbol == pyglet.window.key.S:
-        snake.set_direction(Direction.DOWN)
+        snake.direction = Direction.DOWN
     elif symbol == pyglet.window.key.D:
-        snake.set_direction(Direction.RIGHT)
+        snake.direction = Direction.RIGHT
 
 def update(dt):
-    snake.update(dt)
+    world.update(dt)
 
 pyglet.clock.schedule_interval(update, 0.0166666)
 pyglet.app.run()
